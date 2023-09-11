@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rockpaperscissors</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container-fluid text-white bg-primary"></div>
+        <!-- div 1 -->
+        <div class="row text-white bg-primary" >
+            <div class="col-4 col-sm-3"><span class="fs-3 ps-2">You : </span> <span class="fs-3" id="u"></span> </div>
+            <div class="col-5 col-sm-6"> <span class="fs-3 text-center"  id="d"></span></div>
+            <div class="col-3 col-sm-3"><span class="fs-3" >Pc : </span> <span class="fs-3"  id="p"></span> </div>
+        </div>
+
+        <!-- div2  -->
+        <div class="row text-white bg-primary">
+            <div class="col-12 text-center pt-5">
+                <h1>ROCK PAPER SCISSORS</h1>
+            </div>
+        </div>
+     <!-- div 3 -->
+        <div class="row  pt-5 text-white bg-primary">
+            <div class="col-4">
+                <div class="card text-center" id="m1"  >
+                    <i class="fa-regular fa-hand-back-fist display-1 my-5 py-5" id="m1"  style="color: rgb(0, 0, 0); "></i>
+                </div>
+                <div class="card-body mt-2 text-center">
+                    <button class="btn btn-outline-light text-white px-4 py-2" id="i1" onclick="rps(1)">Rock</button>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card text-center" id="m2">
+                    <i class="fa-regular fa-hand  my-5 py-5 display-1"   style="color: rgb(0, 0, 0); "></i>
+                </div>
+                <div class="card-body mt-2 text-center">
+                    <button class="btn btn-outline-light  text-white px-4 py-2" id="i2" onclick="rps(2)">Paper</button>
+                </div>
+            </div> 
+            <div class="col-4">
+                <div class="card text-center" id="m3">
+                    <i class="fa-regular fa-hand-scissors display-1  my-5 py-5"   style="color: rgb(0, 0, 0); "></i>
+                </div>
+                <div class="card-body mt-2 text-center">
+                    <button class="btn btn-outline-light text-white px-4 py-2" id="i3" onclick="rps(3)">Scissors</button>
+                </div>
+            </div>
+        </div>
+        <!-- div 4 -->
+        <div class="row pt-5 pb-5 text-white text-center bg-primary">
+            <div class="col-12">
+                <button class="btn btn-outline-light text-white px-4 py-2" onclick="reload()">Reload</button>
+            </div>
+        </div>
+
+    </div>
+    <script>
+         
+        var yourscore=0;
+        var pcscore=0;
+        function rps(x){
+            var y = Math.floor((Math.random() * 3) + 1);
+            if(x==2){
+                document.getElementById('i2').style.backgroundColor = "green";
+                document.getElementById('i3').style.backgroundColor = "black";
+                document.getElementById('i1').style.backgroundColor = "black";
+            }
+            else if(x==3){
+                document.getElementById('i3').style.backgroundColor = "green";
+                document.getElementById('i1').style.backgroundColor = "black";
+                document.getElementById('i2').style.backgroundColor = "black";
+            }
+            else if(x==1){
+                document.getElementById('i1').style.backgroundColor = "green";
+                document.getElementById('i2').style.backgroundColor = "black";
+                document.getElementById('i3').style.backgroundColor = "black";
+            }
+            else{
+                console.log("error")
+            }
+            if(y==1){
+                document.getElementById('m1').style.backgroundColor = "yellow";
+                document.getElementById('m2').style.backgroundColor = "white";
+                document.getElementById('m3').style.backgroundColor = "white";
+            }
+            else if(y==2){
+                document.getElementById('m2').style.backgroundColor = "yellow";
+                document.getElementById('m1').style.backgroundColor = "white";
+                document.getElementById('m3').style.backgroundColor = "white";
+            }
+            else if(y==3){
+                document.getElementById('m3').style.backgroundColor = "yellow";
+                document.getElementById('m1').style.backgroundColor = "white";
+                document.getElementById('m2').style.backgroundColor = "white";
+            }
+            else{
+                console.log("error")
+            }
+            if(x==y){
+                document.getElementById("d").innerHTML="<h1>Draw</h1>"
+            }
+            else if(x==1 && y==2){
+                pcscore+=1
+                document.getElementById('d').innerHTML=""
+
+            }
+            else if(x==1 && y==3){
+                yourscore+=1
+                document.getElementById('d').innerHTML=""
+
+            }
+            else if(x==2 && y==3){
+                pcscore+=1
+                document.getElementById('d').innerHTML=""
+
+            }
+            else if(x==2 && y==1){
+                yourscore+=1
+                document.getElementById('d').innerHTML=""
+
+            }
+            else if(x==3 && y==1){
+                pcscore+=1
+                document.getElementById('d').innerHTML=""
+
+            }
+            else if(x==3 && y==2){
+                yourscore+=1
+                document.getElementById('d').innerHTML=""
+
+            }
+            else{
+                console.log("not valid output");
+            }
+            document.getElementById('u').innerHTML= yourscore
+            document.getElementById('p').innerHTML= pcscore 
+            
+        }
+        function reload(){
+            pcscore=0
+            yourscore=0
+            document.getElementById('u').innerHTML= yourscore
+            document.getElementById('p').innerHTML= pcscore 
+            document.getElementById('d').innerHTML= ""
+        }
+
+    </script>
+</body>
+</html>
